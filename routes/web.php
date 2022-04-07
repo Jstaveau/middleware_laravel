@@ -20,8 +20,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['admin'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
-Route::resource('article', ArticleController::class);
+Route::resource('article', ArticleController::class)->middleware(['auth']);
