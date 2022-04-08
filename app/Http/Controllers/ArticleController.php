@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
     /**
+     * Class constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('webmaster')->only('create');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
