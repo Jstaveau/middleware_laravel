@@ -1,10 +1,6 @@
 @extends('layouts.appUser')
 @section('content')
     <h1 class="text-center mt-11 text-2xl">Page articles</h1>
-    <form action="/logout" method="POST">
-        @csrf
-        <button type="submit" class="bg-red-600 rounded text-white p-3">log out</button>
-    </form>
     <div class="flex flex-wrap">
         @foreach ($articles as $article)
             <div

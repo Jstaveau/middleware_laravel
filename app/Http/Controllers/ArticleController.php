@@ -13,7 +13,8 @@ class ArticleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('webmaster')->only('create');
+        $this->middleware('webmaster')->only(['create', 'destroy', 'edit']);
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

@@ -14,8 +14,10 @@
                 mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur.</p>
 
             <div class="mt-8">
-                <a href="/login" class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700">Connectez-vous</a>
-                <a href="/register" class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700">Enregistrez-vous</a>
+                @if (!Auth::user())
+                    <a href="/login" class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700">Connectez-vous</a>
+                    <a href="/register" class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700">Enregistrez-vous</a>
+                @endif
             </div>
         </div>
     </div>

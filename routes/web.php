@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['admin'])->name('dashboard');
+
+Route::get('/users', function(){
+    $users = User::all();
+    return view('pages.users', compact('users'));
+})->name('users');
 
 require __DIR__.'/auth.php';
 
