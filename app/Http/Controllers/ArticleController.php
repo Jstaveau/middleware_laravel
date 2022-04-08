@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -14,7 +15,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('pages.articles');
+        $articles = Article::all();
+        return view('pages.articles', compact('articles'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.createArticle');
     }
 
     /**
@@ -35,7 +37,12 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = new Article();
+        $article->titre = $request->titre;
+        $article->text = $request->text;
+        $article->user_id = Auth::user()->id;
+        $article->save();
+        return redirect('/article');
     }
 
     /**
@@ -46,7 +53,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('pages.articleShow', compact('article'));
     }
 
     /**
@@ -57,7 +64,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('pages.editArticle', compact('article'));
     }
 
     /**
@@ -69,7 +76,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->titre = $request->titre;
+        $article->text = $request->text;
+        $article->save();
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +90,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->back();
     }
 }

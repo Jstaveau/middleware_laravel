@@ -17,7 +17,9 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'titre' => $this->faker->realText($maxNbChars = 10),
+            'text' => $this->faker->realText($maxNbChars = 1000),
+            'user_id' => 1
         ];
     }
 }
