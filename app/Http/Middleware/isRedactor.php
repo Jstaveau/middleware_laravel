@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class WebmasterVerification
+class isRedactor
 {
     /**
      * Handle an incoming request.
@@ -17,7 +16,7 @@ class WebmasterVerification
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role->role != 'webmaster' && auth()->user()->role->role != 'redacteur') {
+        if (auth()->user()->role->role != 'redacteur') {
             return redirect()->back();
         } else {
             return $next($request);

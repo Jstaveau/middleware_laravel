@@ -18,7 +18,7 @@
                 <div class="flex justify-end">
                     <a href="/article/{{ $article->id }}" class="text-white bg-green-700 mr-2 px-2 rounded">Lire
                         l'article</a>
-                    @if (Auth::user()->role->role == 'admin' || Auth::user()->role->role == 'webmaster')
+                    @if (Auth::user()->role->role == 'admin' || Auth::user()->role->role == 'webmaster' || (Auth::user()->role->role == 'redacteur' && $article->user->id == Auth::user()->id) )
                         <a href="/article/{{ $article->id }}/edit" class="text-white bg-black mr-2 px-2 rounded">Modifier
                             l'article</a>
                         <form action="/article/{{ $article->id }}" method="POST">

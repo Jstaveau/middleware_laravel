@@ -13,7 +13,7 @@ class ArticleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('webmaster')->only(['create', 'destroy', 'edit']);
+        $this->middleware(['webmaster'])->only(['create', 'destroy', 'edit']);
         $this->middleware('auth');
     }
     /**
@@ -72,7 +72,11 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('pages.editArticle', compact('article'));
+        if (Auth::user()->id == $article->user->id) {
+            return view('pages.editArticle', compact('article'));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
